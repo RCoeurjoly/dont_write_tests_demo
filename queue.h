@@ -36,6 +36,6 @@ int get(Queue *q)
 
 int size(Queue *q)
 {
-  return (q->inp - q->outp) % q -> size;
+  return abs(q->inp - q->outp) % q -> size;
 }
 #endif //__QUEUE_H__
