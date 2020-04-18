@@ -22,7 +22,7 @@ jobs:
         python-version: 2.7
     - name: Install dependencies
       run: |
-        apt-get install cython
+        sudo apt-get install cython
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Compile
