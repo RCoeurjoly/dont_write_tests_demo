@@ -1,0 +1,50 @@
+* Property-based testing of C code using Hypothesis and Cython
+  The purpose of this repo is to be a Proof of Concept for using the Hypothesis Python library to test C code.
+
+  I have based this repo on a [[https://www.youtube.com/watch?v=hXnS_Xjwk2Y&t=336s][demo by John Hughes]]. The demo starts at 3:18 and ends at 13:29.
+
+* Achievements
+  All 3 bugs discovered by the proprietary software presented in the talk.
+** Bug #1
+   #+begin_src shell :shebang #!/bin/bash -i :results output
+git checkout bug1
+python test.py
+   #+end_src
+
+** Bug #2
+   #+begin_src shell :shebang #!/bin/bash -i :results output
+git checkout bug1
+python test.py
+   #+end_src
+** Bug #3
+   #+begin_src shell :shebang #!/bin/bash -i :results output
+git checkout bug1
+python test.py
+   #+end_src
+* Usage
+** Install dependencies
+*** Cython
+   #+begin_src shell :shebang #!/bin/bash -i :results output
+apt install cython # You may need sudo
+   #+end_src
+*** Python libraries
+    Only Python 2 is supported.
+    #+begin_src shell :shebang #!/bin/bash -i :results output
+pip install -r requirements.txt
+    #+end_src
+
+** Compile
+  #+begin_src shell :shebang #!/bin/bash -i :results output
+./build.sh
+  #+end_src
+
+** Test
+#+begin_src shell :shebang #!/bin/bash -i :results output
+python test.py
+#+end_src
+
+* Actions
+** TODO Use Python 3
+** TODO Build with CMake
+* Acknowledgments
+  Thanks to all free software contributors to make this possible.
