@@ -261,7 +261,7 @@ pip install -r requirements.txt
 python test.py
 #+end_src
 
-* Actions
+* Pending actions
 ** TODO Use Python 3
 ** TODO Build with CMake
 * Acknowledgments
