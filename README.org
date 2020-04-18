@@ -5,22 +5,184 @@
 
 * Achievements
   All 3 bugs discovered by the proprietary software presented in the talk.
+  The falsifying examples are the same as the ones shown in the presentation
 ** Bug #1
    #+begin_src shell :shebang #!/bin/bash -i :results output
-git checkout bug1
+exec 2>&1
+git checkout v0.1
+./build.sh
 python test.py
-   #+end_src
+:
+git checkout master
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Previous HEAD position was 53f5cc0... Version 3
+HEAD is now at bfd2593... Bug 1
+M	README.org
+1 tests executed successfully!. Using 2 as queue size and 1 as inserted element
+2 tests executed successfully!. Using 75 as queue size and 1 as inserted element
+3 tests executed successfully!. Using 76 as queue size and 1 as inserted element
+4 tests executed successfully!. Using 76 as queue size and 21 as inserted element
+5 tests executed successfully!. Using 76 as queue size and 22 as inserted element
+6 tests executed successfully!. Using 31 as queue size and 31 as inserted element
+7 tests executed successfully!. Using 31 as queue size and 41 as inserted element
+8 tests executed successfully!. Using 49 as queue size and 49 as inserted element
+9 tests executed successfully!. Using 100 as queue size and 49 as inserted element
+Falsifying example: test_queue(
+    queue_size=1, inserted_element=1,
+)
+Traceback (most recent call last):
+  File "test.py", line 24, in <module>
+    test_queue()
+  File "test.py", line 10, in test_queue
+    def test_queue(queue_size, inserted_element):
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 1075, in wrapped_test
+    state.run_engine()
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 789, in run_engine
+    info.__expected_traceback,
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 624, in execute_once
+    result = self.test_runner(data, run)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/executors.py", line 56, in default_new_style_executor
+    return function(data)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 620, in run
+    return test(*args, **kwargs)
+  File "test.py", line 10, in test_queue
+    def test_queue(queue_size, inserted_element):
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 544, in test
+    result = self.test(*args, **kwargs)
+  File "test.py", line 17, in test_queue
+    assert_that(my_queue.getSize(), equal_to(1))
+  File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 44, in assert_that
+    _assert_match(actual=arg1, matcher=arg2, reason=arg3)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 60, in _assert_match
+    raise AssertionError(description)
+AssertionError:
+Expected: <1>
+     but: was <0>
+
+Previous HEAD position was bfd2593... Bug 1
+Switched to branch 'master'
+M	README.org
+Your branch is up-to-date with 'origin/master'.
+#+end_example
+
 
 ** Bug #2
    #+begin_src shell :shebang #!/bin/bash -i :results output
-git checkout bug1
+exec 2>&1
+git checkout v0.2
+./build.sh
 python test.py
+:
+git checkout master
    #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   Note: checking out 'v0.2'.
+
+   You are in 'detached HEAD' state. You can look around, make experimental
+   changes and commit them, and you can discard any commits you make in this
+   state without impacting any branches by performing another checkout.
+
+   If you want to create a new branch to retain commits you create, you may
+   do so (now or later) by using -b with the checkout command again. Example:
+
+     git checkout -b <new-branch-name>
+
+   HEAD is now at bb03a37... Version 2
+   M	README.org
+   Falsifying example: test_queue(
+       queue_size=1, inserted_element=1,
+   )
+   Traceback (most recent call last):
+     File "test.py", line 24, in <module>
+       test_queue()
+     File "test.py", line 10, in test_queue
+       def test_queue(queue_size, inserted_element):
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 1075, in wrapped_test
+       state.run_engine()
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 789, in run_engine
+       info.__expected_traceback,
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 624, in execute_once
+       result = self.test_runner(data, run)
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/executors.py", line 56, in default_new_style_executor
+       return function(data)
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 620, in run
+       return test(*args, **kwargs)
+     File "test.py", line 10, in test_queue
+       def test_queue(queue_size, inserted_element):
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 544, in test
+       result = self.test(*args, **kwargs)
+     File "test.py", line 17, in test_queue
+       assert_that(my_queue.getSize(), equal_to(1))
+     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 44, in assert_that
+       _assert_match(actual=arg1, matcher=arg2, reason=arg3)
+     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 60, in _assert_match
+       raise AssertionError(description)
+   AssertionError:
+   Expected: <1>
+        but: was <-1>
+
+   Previous HEAD position was bb03a37... Version 2
+   Switched to branch 'master'
+   M	README.org
+   Your branch is up-to-date with 'origin/master'.
+   #+end_example
+
 ** Bug #3
    #+begin_src shell :shebang #!/bin/bash -i :results output
-git checkout bug1
+exec 2>&1
+git checkout v0.3
+./build.sh
 python test.py
+:
+git checkout master
    #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   Previous HEAD position was bb03a37... Version 2
+   HEAD is now at 53f5cc0... Version 3
+   M	README.org
+   1 tests executed successfully!. Using 1 as queue size and 1 as inserted element
+   2 tests executed successfully!. Using 1 as queue size and 49 as inserted element
+   Falsifying example: test_queue(
+       queue_size=2, inserted_element=1,
+   )
+   Traceback (most recent call last):
+     File "test.py", line 24, in <module>
+       test_queue()
+     File "test.py", line 10, in test_queue
+       def test_queue(queue_size, inserted_element):
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 1075, in wrapped_test
+       state.run_engine()
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 789, in run_engine
+       info.__expected_traceback,
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 624, in execute_once
+       result = self.test_runner(data, run)
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/executors.py", line 56, in default_new_style_executor
+       return function(data)
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 620, in run
+       return test(*args, **kwargs)
+     File "test.py", line 10, in test_queue
+       def test_queue(queue_size, inserted_element):
+     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 544, in test
+       result = self.test(*args, **kwargs)
+     File "test.py", line 17, in test_queue
+       assert_that(my_queue.getSize(), equal_to(1))
+     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 44, in assert_that
+       _assert_match(actual=arg1, matcher=arg2, reason=arg3)
+     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 60, in _assert_match
+       raise AssertionError(description)
+   AssertionError:
+   Expected: <1>
+        but: was <2>
+
+   #+end_example
+
 * Usage
 ** Install dependencies
 *** Cython
