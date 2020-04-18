@@ -7,29 +7,13 @@
   All 3 bugs discovered by the proprietary software presented in the talk.
   The falsifying examples are the same as the ones shown in the presentation
 ** Bug #1
-   #+begin_src shell :shebang #!/bin/bash -i :results output
-exec 2>&1
+   #+begin_src shell :shebang #!/bin/bash -i :results drawer
 git checkout v0.1
 ./build.sh
 python test.py
-:
-git checkout master
 #+end_src
 
-#+RESULTS:
 #+begin_example
-Previous HEAD position was 53f5cc0... Version 3
-HEAD is now at bfd2593... Bug 1
-M	README.org
-1 tests executed successfully!. Using 2 as queue size and 1 as inserted element
-2 tests executed successfully!. Using 75 as queue size and 1 as inserted element
-3 tests executed successfully!. Using 76 as queue size and 1 as inserted element
-4 tests executed successfully!. Using 76 as queue size and 21 as inserted element
-5 tests executed successfully!. Using 76 as queue size and 22 as inserted element
-6 tests executed successfully!. Using 31 as queue size and 31 as inserted element
-7 tests executed successfully!. Using 31 as queue size and 41 as inserted element
-8 tests executed successfully!. Using 49 as queue size and 49 as inserted element
-9 tests executed successfully!. Using 100 as queue size and 49 as inserted element
 Falsifying example: test_queue(
     queue_size=1, inserted_element=1,
 )
@@ -61,147 +45,219 @@ Traceback (most recent call last):
 AssertionError:
 Expected: <1>
      but: was <0>
-
-Previous HEAD position was bfd2593... Bug 1
-Switched to branch 'master'
-M	README.org
-Your branch is up-to-date with 'origin/master'.
 #+end_example
 
-
 ** Bug #2
-   #+begin_src shell :shebang #!/bin/bash -i :results output
-exec 2>&1
+   #+begin_src shell :shebang #!/bin/bash -i :results drawer
 git checkout v0.2
 ./build.sh
 python test.py
-:
-git checkout master
    #+end_src
 
-   #+RESULTS:
    #+begin_example
-   Note: checking out 'v0.2'.
-
-   You are in 'detached HEAD' state. You can look around, make experimental
-   changes and commit them, and you can discard any commits you make in this
-   state without impacting any branches by performing another checkout.
-
-   If you want to create a new branch to retain commits you create, you may
-   do so (now or later) by using -b with the checkout command again. Example:
-
-     git checkout -b <new-branch-name>
-
-   HEAD is now at bb03a37... Version 2
-   M	README.org
-   Falsifying example: test_queue(
-       queue_size=1, inserted_element=1,
-   )
-   Traceback (most recent call last):
-     File "test.py", line 24, in <module>
-       test_queue()
-     File "test.py", line 10, in test_queue
-       def test_queue(queue_size, inserted_element):
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 1075, in wrapped_test
-       state.run_engine()
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 789, in run_engine
-       info.__expected_traceback,
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 624, in execute_once
-       result = self.test_runner(data, run)
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/executors.py", line 56, in default_new_style_executor
-       return function(data)
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 620, in run
-       return test(*args, **kwargs)
-     File "test.py", line 10, in test_queue
-       def test_queue(queue_size, inserted_element):
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 544, in test
-       result = self.test(*args, **kwargs)
-     File "test.py", line 17, in test_queue
-       assert_that(my_queue.getSize(), equal_to(1))
-     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 44, in assert_that
-       _assert_match(actual=arg1, matcher=arg2, reason=arg3)
-     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 60, in _assert_match
-       raise AssertionError(description)
-   AssertionError:
-   Expected: <1>
-        but: was <-1>
-
-   Previous HEAD position was bb03a37... Version 2
-   Switched to branch 'master'
-   M	README.org
-   Your branch is up-to-date with 'origin/master'.
+Falsifying example: test_queue(
+    queue_size=1, inserted_element=1,
+)
+Traceback (most recent call last):
+  File "test.py", line 24, in <module>
+    test_queue()
+  File "test.py", line 10, in test_queue
+    def test_queue(queue_size, inserted_element):
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 1075, in wrapped_test
+    state.run_engine()
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 789, in run_engine
+    info.__expected_traceback,
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 624, in execute_once
+    result = self.test_runner(data, run)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/executors.py", line 56, in default_new_style_executor
+    return function(data)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 620, in run
+    return test(*args, **kwargs)
+  File "test.py", line 10, in test_queue
+    def test_queue(queue_size, inserted_element):
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 544, in test
+    result = self.test(*args, **kwargs)
+  File "test.py", line 17, in test_queue
+    assert_that(my_queue.getSize(), equal_to(1))
+  File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 44, in assert_that
+    _assert_match(actual=arg1, matcher=arg2, reason=arg3)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 60, in _assert_match
+    raise AssertionError(description)
+AssertionError:
+Expected: <1>
+     but: was <-1>
    #+end_example
-
 ** Bug #3
-   #+begin_src shell :shebang #!/bin/bash -i :results output
-exec 2>&1
+   #+begin_src shell :shebang #!/bin/bash -i :results drawer
 git checkout v0.3
 ./build.sh
 python test.py
-:
-git checkout master
    #+end_src
 
-   #+RESULTS:
    #+begin_example
-   Previous HEAD position was bb03a37... Version 2
-   HEAD is now at 53f5cc0... Version 3
-   M	README.org
-   1 tests executed successfully!. Using 1 as queue size and 1 as inserted element
-   2 tests executed successfully!. Using 1 as queue size and 49 as inserted element
-   Falsifying example: test_queue(
-       queue_size=2, inserted_element=1,
-   )
-   Traceback (most recent call last):
-     File "test.py", line 24, in <module>
-       test_queue()
-     File "test.py", line 10, in test_queue
-       def test_queue(queue_size, inserted_element):
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 1075, in wrapped_test
-       state.run_engine()
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 789, in run_engine
-       info.__expected_traceback,
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 624, in execute_once
-       result = self.test_runner(data, run)
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/executors.py", line 56, in default_new_style_executor
-       return function(data)
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 620, in run
-       return test(*args, **kwargs)
-     File "test.py", line 10, in test_queue
-       def test_queue(queue_size, inserted_element):
-     File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 544, in test
-       result = self.test(*args, **kwargs)
-     File "test.py", line 17, in test_queue
-       assert_that(my_queue.getSize(), equal_to(1))
-     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 44, in assert_that
-       _assert_match(actual=arg1, matcher=arg2, reason=arg3)
-     File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 60, in _assert_match
-       raise AssertionError(description)
-   AssertionError:
-   Expected: <1>
-        but: was <2>
+1 tests executed successfully!. Using 1 as queue size and 1 as inserted element
+2 tests executed successfully!. Using 1 as queue size and 11 as inserted element
+Falsifying example: test_queue(
+    queue_size=2, inserted_element=1,
+)
+Traceback (most recent call last):
+  File "test.py", line 24, in <module>
+    test_queue()
+  File "test.py", line 10, in test_queue
+    def test_queue(queue_size, inserted_element):
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 1075, in wrapped_test
+    state.run_engine()
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 789, in run_engine
+    info.__expected_traceback,
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 624, in execute_once
+    result = self.test_runner(data, run)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/executors.py", line 56, in default_new_style_executor
+    return function(data)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 620, in run
+    return test(*args, **kwargs)
+  File "test.py", line 10, in test_queue
+    def test_queue(queue_size, inserted_element):
+  File "/home/rcl/.local/lib/python2.7/site-packages/hypothesis/core.py", line 544, in test
+    result = self.test(*args, **kwargs)
+  File "test.py", line 17, in test_queue
+    assert_that(my_queue.getSize(), equal_to(1))
+  File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 44, in assert_that
+    _assert_match(actual=arg1, matcher=arg2, reason=arg3)
+  File "/home/rcl/.local/lib/python2.7/site-packages/hamcrest/core/assert_that.py", line 60, in _assert_match
+    raise AssertionError(description)
+AssertionError:
+Expected: <1>
+     but: was <2>
+   #+end_example
+** Final version
+   #+begin_src shell :shebang #!/bin/bash -i :results output
+git checkout v0.4
+./build.sh
+python test.py
+   #+end_src
 
+   #+begin_example
+1 tests executed successfully!. Using 2 as queue size and 1 as inserted element
+2 tests executed successfully!. Using 43 as queue size and 1 as inserted element
+3 tests executed successfully!. Using 44 as queue size and 1 as inserted element
+4 tests executed successfully!. Using 44 as queue size and 17 as inserted element
+5 tests executed successfully!. Using 44 as queue size and 18 as inserted element
+6 tests executed successfully!. Using 63 as queue size and 11 as inserted element
+7 tests executed successfully!. Using 1 as queue size and 1 as inserted element
+8 tests executed successfully!. Using 1 as queue size and 1 as inserted element
+9 tests executed successfully!. Using 1 as queue size and 60 as inserted element
+10 tests executed successfully!. Using 93 as queue size and 60 as inserted element
+11 tests executed successfully!. Using 1 as queue size and 33 as inserted element
+12 tests executed successfully!. Using 74 as queue size and 33 as inserted element
+13 tests executed successfully!. Using 24 as queue size and 2 as inserted element
+14 tests executed successfully!. Using 69 as queue size and 37 as inserted element
+15 tests executed successfully!. Using 10 as queue size and 12 as inserted element
+16 tests executed successfully!. Using 8 as queue size and 62 as inserted element
+17 tests executed successfully!. Using 51 as queue size and 75 as inserted element
+18 tests executed successfully!. Using 75 as queue size and 75 as inserted element
+19 tests executed successfully!. Using 14 as queue size and 52 as inserted element
+20 tests executed successfully!. Using 14 as queue size and 14 as inserted element
+21 tests executed successfully!. Using 8 as queue size and 49 as inserted element
+22 tests executed successfully!. Using 49 as queue size and 49 as inserted element
+23 tests executed successfully!. Using 42 as queue size and 4 as inserted element
+24 tests executed successfully!. Using 4 as queue size and 42 as inserted element
+25 tests executed successfully!. Using 4 as queue size and 4 as inserted element
+26 tests executed successfully!. Using 98 as queue size and 79 as inserted element
+27 tests executed successfully!. Using 98 as queue size and 98 as inserted element
+28 tests executed successfully!. Using 44 as queue size and 7 as inserted element
+29 tests executed successfully!. Using 44 as queue size and 44 as inserted element
+30 tests executed successfully!. Using 15 as queue size and 65 as inserted element
+31 tests executed successfully!. Using 15 as queue size and 15 as inserted element
+32 tests executed successfully!. Using 15 as queue size and 15 as inserted element
+33 tests executed successfully!. Using 100 as queue size and 16 as inserted element
+34 tests executed successfully!. Using 100 as queue size and 100 as inserted element
+35 tests executed successfully!. Using 72 as queue size and 29 as inserted element
+36 tests executed successfully!. Using 29 as queue size and 29 as inserted element
+37 tests executed successfully!. Using 89 as queue size and 93 as inserted element
+38 tests executed successfully!. Using 89 as queue size and 89 as inserted element
+39 tests executed successfully!. Using 27 as queue size and 13 as inserted element
+40 tests executed successfully!. Using 13 as queue size and 13 as inserted element
+41 tests executed successfully!. Using 19 as queue size and 25 as inserted element
+42 tests executed successfully!. Using 19 as queue size and 19 as inserted element
+43 tests executed successfully!. Using 84 as queue size and 48 as inserted element
+44 tests executed successfully!. Using 48 as queue size and 84 as inserted element
+45 tests executed successfully!. Using 84 as queue size and 84 as inserted element
+46 tests executed successfully!. Using 20 as queue size and 53 as inserted element
+47 tests executed successfully!. Using 20 as queue size and 20 as inserted element
+48 tests executed successfully!. Using 31 as queue size and 20 as inserted element
+49 tests executed successfully!. Using 31 as queue size and 31 as inserted element
+50 tests executed successfully!. Using 66 as queue size and 40 as inserted element
+51 tests executed successfully!. Using 40 as queue size and 40 as inserted element
+52 tests executed successfully!. Using 75 as queue size and 43 as inserted element
+53 tests executed successfully!. Using 10 as queue size and 77 as inserted element
+54 tests executed successfully!. Using 10 as queue size and 10 as inserted element
+55 tests executed successfully!. Using 93 as queue size and 31 as inserted element
+56 tests executed successfully!. Using 31 as queue size and 31 as inserted element
+57 tests executed successfully!. Using 7 as queue size and 80 as inserted element
+58 tests executed successfully!. Using 7 as queue size and 7 as inserted element
+59 tests executed successfully!. Using 7 as queue size and 7 as inserted element
+60 tests executed successfully!. Using 67 as queue size and 57 as inserted element
+61 tests executed successfully!. Using 67 as queue size and 57 as inserted element
+62 tests executed successfully!. Using 57 as queue size and 57 as inserted element
+63 tests executed successfully!. Using 74 as queue size and 27 as inserted element
+64 tests executed successfully!. Using 74 as queue size and 74 as inserted element
+65 tests executed successfully!. Using 50 as queue size and 2 as inserted element
+66 tests executed successfully!. Using 50 as queue size and 50 as inserted element
+67 tests executed successfully!. Using 15 as queue size and 96 as inserted element
+68 tests executed successfully!. Using 27 as queue size and 18 as inserted element
+69 tests executed successfully!. Using 27 as queue size and 27 as inserted element
+70 tests executed successfully!. Using 67 as queue size and 5 as inserted element
+71 tests executed successfully!. Using 5 as queue size and 5 as inserted element
+72 tests executed successfully!. Using 33 as queue size and 67 as inserted element
+73 tests executed successfully!. Using 33 as queue size and 33 as inserted element
+74 tests executed successfully!. Using 46 as queue size and 94 as inserted element
+75 tests executed successfully!. Using 46 as queue size and 46 as inserted element
+76 tests executed successfully!. Using 19 as queue size and 69 as inserted element
+77 tests executed successfully!. Using 69 as queue size and 69 as inserted element
+78 tests executed successfully!. Using 23 as queue size and 94 as inserted element
+79 tests executed successfully!. Using 23 as queue size and 94 as inserted element
+80 tests executed successfully!. Using 23 as queue size and 23 as inserted element
+81 tests executed successfully!. Using 81 as queue size and 28 as inserted element
+82 tests executed successfully!. Using 28 as queue size and 28 as inserted element
+83 tests executed successfully!. Using 55 as queue size and 64 as inserted element
+84 tests executed successfully!. Using 55 as queue size and 55 as inserted element
+85 tests executed successfully!. Using 5 as queue size and 66 as inserted element
+86 tests executed successfully!. Using 66 as queue size and 66 as inserted element
+87 tests executed successfully!. Using 41 as queue size and 72 as inserted element
+88 tests executed successfully!. Using 41 as queue size and 41 as inserted element
+89 tests executed successfully!. Using 83 as queue size and 42 as inserted element
+90 tests executed successfully!. Using 83 as queue size and 83 as inserted element
+91 tests executed successfully!. Using 89 as queue size and 44 as inserted element
+92 tests executed successfully!. Using 48 as queue size and 76 as inserted element
+93 tests executed successfully!. Using 48 as queue size and 48 as inserted element
+94 tests executed successfully!. Using 94 as queue size and 78 as inserted element
+95 tests executed successfully!. Using 94 as queue size and 94 as inserted element
+96 tests executed successfully!. Using 42 as queue size and 52 as inserted element
+97 tests executed successfully!. Using 42 as queue size and 42 as inserted element
+98 tests executed successfully!. Using 67 as queue size and 10 as inserted element
+99 tests executed successfully!. Using 67 as queue size and 67 as inserted element
+100 tests executed successfully!. Using 37 as queue size and 68 as inserted element
    #+end_example
 
 * Usage
 ** Install dependencies
 *** Cython
-   #+begin_src shell :shebang #!/bin/bash -i :results output
+   #+begin_src shell :shebang #!/bin/bash -i :results drawer
 apt install cython # You may need sudo
    #+end_src
 *** Python libraries
     Only Python 2 is supported.
-    #+begin_src shell :shebang #!/bin/bash -i :results output
+    #+begin_src shell :shebang #!/bin/bash -i :results drawer
 pip install -r requirements.txt
     #+end_src
 
 ** Compile
-  #+begin_src shell :shebang #!/bin/bash -i :results output
+  #+begin_src shell :shebang #!/bin/bash -i :results drawer
 ./build.sh
   #+end_src
 
 ** Test
-#+begin_src shell :shebang #!/bin/bash -i :results output
+#+begin_src shell :shebang #!/bin/bash -i :results drawer
 python test.py
 #+end_src
 
