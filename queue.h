@@ -14,8 +14,8 @@ typedef struct queue
 
 Queue *new_queue(int n)
 {
-  int *buff = malloc((n)*sizeof(int));
-  Queue q = {0,0,n,buff};
+  int *buff = malloc((n+1)*sizeof(int));
+  Queue q = {0,0,n+1,buff};
   Queue *qptr = malloc(sizeof(Queue));
   *qptr = q;
   return qptr;
