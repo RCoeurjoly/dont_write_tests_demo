@@ -4,8 +4,8 @@
   I have based this repo on a [[https://www.youtube.com/watch?v=hXnS_Xjwk2Y&t=336s][demo by John Hughes]]. The demo starts at 3:18 and ends at 13:29.
 
 * Achievements
-  All 3 bugs discovered by the proprietary software presented in the talk.
-  The falsifying examples are the same as the ones shown in the presentation
+  All 3 bugs discovered by the proprietary software presented in the talk were found.
+  The falsifying examples are the same as the ones shown in the presentation.
 ** Bug #1
    #+begin_src shell :shebang #!/bin/bash -i :results drawer
 git checkout v0.1
@@ -240,6 +240,11 @@ python test.py
    #+end_example
 
 * Usage
+** Create virtual environment for Python
+   #+begin_src shell :shebang #!/bin/bash -i :results output
+virtualenv -p /usr/bin/python2.7 env
+   #+end_src
+
 ** Install dependencies
 *** Cython
    #+begin_src shell :shebang #!/bin/bash -i :results drawer
@@ -248,9 +253,9 @@ apt install cython # You may need sudo
 *** Python libraries
     Only Python 2 is supported.
     #+begin_src shell :shebang #!/bin/bash -i :results drawer
+source env/bin/activate
 pip install -r requirements.txt
     #+end_src
-
 ** Compile
   #+begin_src shell :shebang #!/bin/bash -i :results drawer
 ./build.sh
