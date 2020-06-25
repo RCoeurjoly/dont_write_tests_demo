@@ -12,7 +12,7 @@ git checkout v0.1
 ./build.sh
 python test.py
 git checkout -- .
-git chekout master
+git checkout master
 #+end_src
 
 #+begin_example
@@ -55,7 +55,7 @@ git checkout v0.2
 ./build.sh
 python test.py
 git checkout -- .
-git chekout master
+git checkout master
    #+end_src
 
    #+begin_example
@@ -97,7 +97,7 @@ git checkout v0.3
 ./build.sh
 python test.py
 git checkout -- .
-git chekout master
+git checkout master
    #+end_src
 
    #+begin_example
@@ -141,7 +141,7 @@ git checkout v0.4
 ./build.sh
 python test.py
 git checkout -- .
-git chekout master
+git checkout master
    #+end_src
 
    #+begin_example
