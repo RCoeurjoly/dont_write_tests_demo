@@ -269,5 +269,25 @@ python test.py
 * Pending actions
 ** TODO Use Python 3
 ** TODO Build with CMake
+** DONE Tag versions
+   CLOSED: [2020-06-25 Thu 10:20]
+   - State "DONE"       from "TODO_NEXT"  [2020-06-25 Thu 10:20]
+   - State "TODO_NEXT"  from              [2020-06-25 Thu 10:14]
+*** DONE v0.1
+    CLOSED: [2020-06-25 Thu 10:20]
+    - State "DONE"       from "TODO_NEXT"  [2020-06-25 Thu 10:20]
+    - State "TODO_NEXT"  from              [2020-06-25 Thu 10:15]
+*** DONE v0.2
+    CLOSED: [2020-06-25 Thu 10:20]
+    - State "DONE"       from "TODO_NEXT"  [2020-06-25 Thu 10:20]
+    - State "TODO_NEXT"  from              [2020-06-25 Thu 10:15]
+*** DONE v0.3
+    CLOSED: [2020-06-25 Thu 10:20]
+    - State "DONE"       from "TODO_NEXT"  [2020-06-25 Thu 10:20]
+    - State "TODO_NEXT"  from              [2020-06-25 Thu 10:15]
+*** DONE v0.4
+    CLOSED: [2020-06-25 Thu 10:20]
+    - State "DONE"       from "TODO_NEXT"  [2020-06-25 Thu 10:20]
+    - State "TODO_NEXT"  from              [2020-06-25 Thu 10:15]
 * Acknowledgments
   Thanks to all free software contributors to make this possible.
