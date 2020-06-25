@@ -11,6 +11,8 @@
 git checkout v0.1
 ./build.sh
 python test.py
+git checkout -- .
+git chekout master
 #+end_src
 
 #+begin_example
@@ -52,6 +54,8 @@ Expected: <1>
 git checkout v0.2
 ./build.sh
 python test.py
+git checkout -- .
+git chekout master
    #+end_src
 
    #+begin_example
@@ -92,6 +96,8 @@ Expected: <1>
 git checkout v0.3
 ./build.sh
 python test.py
+git checkout -- .
+git chekout master
    #+end_src
 
    #+begin_example
@@ -134,6 +140,8 @@ Expected: <1>
 git checkout v0.4
 ./build.sh
 python test.py
+git checkout -- .
+git chekout master
    #+end_src
 
    #+begin_example
