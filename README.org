@@ -47,10 +47,7 @@ Expected: <1>
 
 ** Bug #2
    #+begin_src shell :shebang #!/bin/bash -i :results drawer
-git checkout v0.2 &&
-    ./build.sh &&
-    python test.py
-    || git checkout -- . && git checkout master
+git checkout v0.2 && ./build.sh && python test.py || git checkout -- . && git checkout master
    #+end_src
 
    #+begin_example
@@ -88,11 +85,7 @@ Expected: <1>
    #+end_example
 ** Bug #3
    #+begin_src shell :shebang #!/bin/bash -i :results drawer
-git checkout v0.3
-./build.sh
-python test.py
-git checkout -- .
-git checkout master
+git checkout v0.3 && ./build.sh && python test.py || git checkout -- . && git checkout master
    #+end_src
 
    #+begin_example
@@ -132,11 +125,7 @@ Expected: <1>
    #+end_example
 ** Final version
    #+begin_src shell :shebang #!/bin/bash -i :results output
-git checkout v0.4
-./build.sh
-python test.py
-git checkout -- .
-git checkout master
+git checkout v0.4 && ./build.sh && python test.py || git checkout -- . && git checkout master
    #+end_src
 
    #+begin_example
