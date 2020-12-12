@@ -8,11 +8,7 @@
   The falsifying examples are the same as the ones shown in the presentation.
 ** Bug #1
    #+begin_src shell :shebang #!/bin/bash -i :results drawer
-git checkout v0.1
-./build.sh
-python test.py
-git checkout -- .
-git checkout master
+git checkout v0.1 && ./build.sh && python test.py && git checkout -- . && git checkout master
 #+end_src
 
 #+begin_example
@@ -51,11 +47,10 @@ Expected: <1>
 
 ** Bug #2
    #+begin_src shell :shebang #!/bin/bash -i :results drawer
-git checkout v0.2
-./build.sh
-python test.py
-git checkout -- .
-git checkout master
+git checkout v0.2 &&
+    ./build.sh &&
+    python test.py
+    || git checkout -- . && git checkout master
    #+end_src
 
    #+begin_example
